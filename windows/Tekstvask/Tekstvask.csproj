@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <!-- Lets `dotnet build` and `dotnet publish` run on macOS and Linux too. -->
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <UseWPF>true</UseWPF>
+    <!-- Only for NotifyIcon; WPF has no tray icon. -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- WPF0001: the Fluent (Windows 11) theme is still marked experimental. WFO0003: DPI is set in app.manifest, as WPF needs. -->
+    <NoWarn>$(NoWarn);WPF0001;WFO0003</NoWarn>
+    <ApplicationIcon>Assets\Tekstvask.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>1.0.0</Version>
+    <Product>Tekstvask</Product>
+    <Copyright>Erik Sagatun</Copyright>
+    <!-- The framework's own translations cover neither Norwegian nor Swedish; leave them out. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <!-- `dotnet publish -r win-x64` (or win-arm64): one self-contained .exe that needs no .NET install. -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- WinForms' implicit usings clash with WPF's Application, Button, Clipboard, … -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Tekstvask.ico" />
+    <None Remove="Assets\make_ico.py" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Anthropic" Version="12.55.0" />
+  </ItemGroup>
+
+</Project>

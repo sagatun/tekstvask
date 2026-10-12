@@ -1,0 +1,136 @@
+<Window x:Class="Tekstvask.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Tekstvask"
+        Title="{local:Tr 'Tekstvask Settings'}" Icon="/Assets/Tekstvask.ico"
+        Width="580" SizeToContent="Height" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Settings cards as in Windows 11's own Settings app; the brushes come from the Fluent theme. -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="16,14" />
+        </Style>
+        <Style x:Key="Heading" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="2,20,0,8" />
+        </Style>
+        <Style x:Key="Caption" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+        </Style>
+    </Window.Resources>
+
+    <TabControl Margin="12,10,12,12">
+        <TabItem Header="{local:Tr 'General'}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="8,16,8,8">
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <TextBlock Text="{local:Tr 'Anthropic API key'}" Margin="0,0,0,8" />
+                            <PasswordBox x:Name="ApiKey" PasswordChanged="ApiKeyChanged" />
+                            <TextBlock Margin="0,10,0,0">
+                                <Hyperlink NavigateUri="https://console.anthropic.com/settings/keys" RequestNavigate="OpenLink">
+                                    <Run Text="{local:Tr 'Get an API key at console.anthropic.com'}" />
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Style="{StaticResource Heading}" Text="{local:Tr 'Shortcuts'}" />
+                    <Border Style="{StaticResource Card}">
+                        <Grid x:Name="Shortcuts">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="180" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!-- One row per action is added in code, then the target language and its caption. -->
+                            <TextBlock x:Name="LanguageLabel" Text="{local:Tr 'Target language'}" VerticalAlignment="Center" Margin="0,4,12,0" />
+                            <ComboBox x:Name="LanguagePicker" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,4,0,0"
+                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="LanguageChanged" />
+                            <TextBlock x:Name="LanguageCaption" Grid.ColumnSpan="3" Style="{StaticResource Caption}" Margin="0,8,0,0" />
+                        </Grid>
+                    </Border>
+                    <TextBlock x:Name="ShortcutProblem" Visibility="Collapsed" TextWrapping="Wrap" Margin="2,8,0,0"
+                               Foreground="{DynamicResource SystemFillColorCriticalBrush}" />
+
+                    <Border Style="{StaticResource Card}" Margin="0,20,0,0">
+                        <CheckBox x:Name="OpenAtLogin" Content="{local:Tr 'Open at login'}" Click="OpenAtLoginClicked" />
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <TabItem Header="{local:Tr 'Advanced'}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="8,16,8,8">
+                    <Border Style="{StaticResource Card}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="0,0,16,16">
+                                <TextBlock Text="{local:Tr 'Model'}" />
+                                <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
+                                           Text="{local:Tr 'Haiku is the fastest and cheapest. Sonnet and Opus are slower and cost more, but follow demanding prompts better.'}" />
+                            </StackPanel>
+                            <ComboBox x:Name="ModelPicker" Grid.Column="1" VerticalAlignment="Top"
+                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="ModelChanged" />
+                            <StackPanel Grid.Row="1" Margin="0,0,16,0">
+                                <TextBlock Text="{local:Tr 'Second language'}" />
+                                <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
+                                           Text="{local:Tr 'Text that’s already in the target language is translated to this language instead.'}" />
+                            </StackPanel>
+                            <ComboBox x:Name="SecondLanguagePicker" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
+                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="SecondLanguageChanged" />
+                        </Grid>
+                    </Border>
+
+                    <TextBlock Style="{StaticResource Heading}" Text="{local:Tr 'Custom action'}" />
+                    <Border Style="{StaticResource Card}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0,0,16,0">
+                                <TextBlock Text="{local:Tr 'Name in the menu'}" />
+                                <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
+                                           Text="{local:Tr 'Name it to add it to the menu and give it a shortcut. Its prompt is under Custom below.'}" />
+                            </StackPanel>
+                            <Grid Grid.Column="1" VerticalAlignment="Top">
+                                <TextBox x:Name="CustomName" TextChanged="CustomNameChanged" />
+                                <TextBlock x:Name="CustomNamePlaceholder" Text="{local:Tr 'e.g. Shorten'}" IsHitTestVisible="False"
+                                           VerticalAlignment="Center" Margin="12,0,0,0" Foreground="{DynamicResource TextFillColorTertiaryBrush}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <TextBlock Style="{StaticResource Heading}" Text="{local:Tr 'Prompts'}" />
+                    <Border Style="{StaticResource Card}">
+                        <StackPanel>
+                            <!-- One toggle per action is added in code. -->
+                            <StackPanel x:Name="PromptKinds" Orientation="Horizontal" />
+                            <TextBox x:Name="PromptEditor" Margin="0,10,0,0" Height="140" AcceptsReturn="True" TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Auto" TextChanged="PromptChanged" />
+                            <DockPanel Margin="0,10,0,0">
+                                <Button x:Name="ResetPrompt" DockPanel.Dock="Right" Margin="12,0,0,0" VerticalAlignment="Center"
+                                        Content="{local:Tr 'Reset to Default'}" Click="ResetPromptClicked" />
+                                <TextBlock x:Name="PlaceholderCaption" Style="{StaticResource Caption}" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</Window>

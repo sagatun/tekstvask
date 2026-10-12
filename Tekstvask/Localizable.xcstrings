@@ -1,0 +1,614 @@
+{
+  "sourceLanguage": "en",
+  "version": "1.0",
+  "strings": {
+    "%@ and %@ are replaced with the target and second language.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ og %2$@ byttes ut med målspråket og andrespråket."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ och %2$@ ersätts med målspråket och andraspråket."
+          }
+        }
+      }
+    },
+    "Accessibility": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilgjengelighet"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hjälpmedel"
+          }
+        }
+      }
+    },
+    "Advanced": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avansert"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avancerat"
+          }
+        }
+      }
+    },
+    "Anthropic API error (%lld): %@": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feil fra Anthropic API (%lld): %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fel från Anthropic API (%lld): %@"
+          }
+        }
+      }
+    },
+    "Anthropic API key": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anthropic API-nøkkel"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anthropic API-nyckel"
+          }
+        }
+      }
+    },
+    "Claude declined to process this text.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude avviste å behandle denne teksten."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude avböjde att bearbeta texten."
+          }
+        }
+      }
+    },
+    "Claude returned no text.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude returnerte ingen tekst."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude returnerade ingen text."
+          }
+        }
+      }
+    },
+    "Custom": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egen"
+          }
+        }
+      }
+    },
+    "Custom action": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egen handling"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Egen åtgärd"
+          }
+        }
+      }
+    },
+    "e.g. Shorten": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "f.eks. Forkort"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "t.ex. Korta ner"
+          }
+        }
+      }
+    },
+    "General": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generelt"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allmänt"
+          }
+        }
+      }
+    },
+    "Get an API key at console.anthropic.com": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skaff en API-nøkkel på console.anthropic.com"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skaffa en API-nyckel på console.anthropic.com"
+          }
+        }
+      }
+    },
+    "Granted": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tillatt"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beviljad"
+          }
+        }
+      }
+    },
+    "Haiku is the fastest and cheapest. Sonnet and Opus are slower and cost more, but follow demanding prompts better.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haiku er raskest og billigst. Sonnet og Opus er tregere og koster mer, men følger krevende prompter bedre."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haiku är snabbast och billigast. Sonnet och Opus är långsammare och kostar mer, men följer krävande prompter bättre."
+          }
+        }
+      }
+    },
+    "Model": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modell"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modell"
+          }
+        }
+      }
+    },
+    "Name in the menu": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navn i menyen"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namn i menyn"
+          }
+        }
+      }
+    },
+    "Name it to add it to the menu and give it a shortcut. Its prompt is under Custom below.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gi den et navn for å få den i menyen og gi den en hurtigtast. Prompten ligger under Egen nedenfor."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ge den ett namn för att få den i menyn och ge den ett kortkommando. Prompten finns under Egen nedan."
+          }
+        }
+      }
+    },
+    "Open at login": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne ved pålogging"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna vid inloggning"
+          }
+        }
+      }
+    },
+    "Open System Settings…": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Åpne Systeminnstillinger…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öppna Systeminställningar…"
+          }
+        }
+      }
+    },
+    "Prompt": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prompt"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prompt"
+          }
+        }
+      }
+    },
+    "Prompts": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prompter"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prompter"
+          }
+        }
+      }
+    },
+    "Proofread": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Språkvask"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korrekturläs"
+          }
+        }
+      }
+    },
+    "Quit Tekstvask": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avslutt Tekstvask"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avsluta Tekstvask"
+          }
+        }
+      }
+    },
+    "Reset to Default": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tilbakestill"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Återställ"
+          }
+        }
+      }
+    },
+    "Second language": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andrespråk"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andraspråk"
+          }
+        }
+      }
+    },
+    "Settings…": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Innstillinger…"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inställningar…"
+          }
+        }
+      }
+    },
+    "Shortcuts": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hurtigtaster"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kortkommandon"
+          }
+        }
+      }
+    },
+    "Target language": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målspråk"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Målspråk"
+          }
+        }
+      }
+    },
+    "Tekstvask needs Accessibility access to copy and paste the selected text.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstvask trenger tilgang under Tilgjengelighet for å kopiere og lime inn markert tekst."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekstvask behöver behörighet under Hjälpmedel för att kopiera och klistra in markerad text."
+          }
+        }
+      }
+    },
+    "Tekstvask Settings": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Innstillinger for Tekstvask"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inställningar för Tekstvask"
+          }
+        }
+      }
+    },
+    "Text already in %@ is translated to %@.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst som allerede er på %1$@, oversettes til %2$@."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text som redan är på %1$@ översätts till %2$@."
+          }
+        }
+      }
+    },
+    "Text that’s already in the target language is translated to this language instead.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst som allerede er på målspråket, oversettes til dette språket i stedet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Text som redan är på målspråket översätts till det här språket i stället."
+          }
+        }
+      }
+    },
+    "That shortcut is already used by “%@”.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hurtigtasten brukes allerede av «%@»."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kortkommandot används redan av ”%@”."
+          }
+        }
+      }
+    },
+    "The API key was rejected. Check it in Settings.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API-nøkkelen ble avvist. Sjekk den i Innstillinger."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API-nyckeln avvisades. Kontrollera den i Inställningar."
+          }
+        }
+      }
+    },
+    "The text is too long. Select less text and try again.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teksten er for lang. Marker mindre tekst og prøv igjen."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Texten är för lång. Markera mindre text och försök igen."
+          }
+        }
+      }
+    },
+    "Translate": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oversett"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Översätt"
+          }
+        }
+      }
+    },
+    "Translate to %@": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oversett til %@"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Översätt till %@"
+          }
+        }
+      }
+    },
+    "You switched apps, so the result was copied to the clipboard instead.": {
+      "localizations": {
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du byttet app, så resultatet ble kopiert til utklippstavlen i stedet."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Du bytte app, så resultatet kopierades till urklipp i stället."
+          }
+        }
+      }
+    }
+  }
+}

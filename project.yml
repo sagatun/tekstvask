@@ -1,0 +1,57 @@
+name: Tekstvask
+options:
+  bundleIdPrefix: com.eriksagatun
+  deploymentTarget:
+    macOS: "14.0"
+  developmentLanguage: en
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: 1.10.0
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # Ad-hoc signing for local builds; `make release TEAM_ID=…` switches to Developer ID.
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+targets:
+  Tekstvask:
+    type: application
+    platform: macOS
+    sources: [Tekstvask]
+    dependencies:
+      - package: KeyboardShortcuts
+    info:
+      path: Tekstvask/Info.plist
+      properties:
+        LSUIElement: true
+        CFBundleDisplayName: Tekstvask
+        LSApplicationCategoryType: public.app-category.productivity
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.eriksagatun.Tekstvask
+        ENABLE_HARDENED_RUNTIME: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  TekstvaskTests:
+    type: bundle.unit-test
+    platform: macOS
+    # Pure logic only, compiled straight in: no host app, so tests never launch the menu bar app.
+    sources:
+      - TekstvaskTests
+      - Tekstvask/Claude.swift
+      - Tekstvask/Preferences.swift
+      - Tekstvask/Prompts.swift
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Tekstvask:
+    build:
+      targets:
+        Tekstvask: all
+    test:
+      targets: [TekstvaskTests]
