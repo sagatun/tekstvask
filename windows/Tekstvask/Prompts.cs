@@ -6,7 +6,7 @@ namespace Tekstvask;
 /// </summary>
 public static class Prompts
 {
-    /// <summary>Written into any prompt, replaced with the English names of the target and second language.</summary>
+    /// <summary>Written into any prompt, replaced with the English names of the language to translate to and the other language.</summary>
     public const string TargetPlaceholder = "{target}", SecondPlaceholder = "{second}";
 
     public const string Proofread =
@@ -30,6 +30,14 @@ public static class Prompts
         "Make the text shorter and clearer. Keep the original language, meaning, tone and formatting " +
         "(line breaks, lists, markdown, emoji, @mentions, links).\n" +
         "Reply with only the rewritten text: no introduction, no explanation, no quotes, no <text> tags.";
+
+    /// <summary>
+    /// The target and second language to fill in for <paramref name="text"/>, swapped when the text is in the target language.
+    /// Haiku tends to skip the translate prompt's "if it is already in {target}" clause and returns the text unchanged,
+    /// so we decide here; the clause only covers text too short to recognize, such as "ok".
+    /// </summary>
+    public static (string Target, string Second) Languages(string text, string target, string second) =>
+        LanguageRecognizer.Recognize(text) == target ? (second, target) : (target, second);
 
     /// <summary>Puts the languages into a prompt, named in English (the prompt is English).</summary>
     public static string Filling(string prompt, string target, string second) => prompt

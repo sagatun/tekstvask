@@ -48,8 +48,11 @@ enum TextAction: String, CaseIterable {
         }
     }
 
-    var systemPrompt: String {
-        Prompts.filling(prompt, target: Preferences.targetLanguage, second: Preferences.secondLanguage)
+    /// Translate is two-way, so its languages depend on the text; the other prompts get the settings as they are.
+    func systemPrompt(for text: String) -> String {
+        var (target, second) = (Preferences.targetLanguage, Preferences.secondLanguage)
+        if self == .translate { (target, second) = Prompts.languages(for: text, target: target, second: second) }
+        return Prompts.filling(prompt, target: target, second: second)
     }
 
     /// A shortcut for an unnamed custom action would still take the keys away from other apps, so it's switched off.
@@ -106,7 +109,7 @@ enum TextAction: String, CaseIterable {
         let app = NSWorkspace.shared.frontmostApplication?.processIdentifier
         guard let original = await clipboard.copySelection() else { return NSSound.beep() }
         do {
-            let reply = try await Claude.complete(apiKey: apiKey, model: Preferences.model, system: action.systemPrompt, text: original)
+            let reply = try await Claude.complete(apiKey: apiKey, model: Preferences.model, system: action.systemPrompt(for: original), text: original)
             let result = Prompts.restoringOuterWhitespace(of: original, in: reply)
             guard NSWorkspace.shared.frontmostApplication?.processIdentifier == app else {
                 clipboard.keep(result)

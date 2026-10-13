@@ -32,7 +32,7 @@ public static class Strings
         ["Quit Tekstvask"] = ("Avslutt Tekstvask", "Avsluta Tekstvask"),
         ["Settings…"] = ("Innstillinger…", "Inställningar…"),
         ["Shortcuts"] = ("Hurtigtaster", "Kortkommandon"),
-        ["Target language"] = ("Målspråk", "Målspråk"),
+        ["Translate to"] = ("Oversett til", "Översätt till"),
         ["Tekstvask Settings"] = ("Innstillinger for Tekstvask", "Inställningar för Tekstvask"),
         ["That shortcut is already used by “{0}”."] = ("Hurtigtasten brukes allerede av «{0}».", "Kortkommandot används redan av ”{0}”."),
         ["The API key was rejected. Check it in Settings."] = ("API-nøkkelen ble avvist. Sjekk den i Innstillinger.", "API-nyckeln avvisades. Kontrollera den i Inställningar."),
@@ -41,15 +41,12 @@ public static class Strings
         ["You switched apps, so the result was copied to the clipboard instead."] = ("Du byttet app, så resultatet ble kopiert til utklippstavlen i stedet.", "Du bytte app, så resultatet kopierades till urklipp i stället."),
         ["General"] = ("Generelt", "Allmänt"),
         ["Advanced"] = ("Avansert", "Avancerat"),
-        ["Text already in {0} is translated to {1}."] = ("Tekst som allerede er på {0}, oversettes til {1}.", "Text som redan är på {0} översätts till {1}."),
+        ["Text in {0} is translated to {1} instead."] = ("Tekst på {0} oversettes til {1} i stedet.", "Text på {0} översätts till {1} i stället."),
         ["Model"] = ("Modell", "Modell"),
         ["Haiku is the fastest and cheapest. Sonnet and Opus are slower and cost more, but follow demanding prompts better."] =
             ("Haiku er raskest og billigst. Sonnet og Opus er tregere og koster mer, men følger krevende prompter bedre.",
              "Haiku är snabbast och billigast. Sonnet och Opus är långsammare och kostar mer, men följer krävande prompter bättre."),
-        ["Second language"] = ("Andrespråk", "Andraspråk"),
-        ["Text that’s already in the target language is translated to this language instead."] =
-            ("Tekst som allerede er på målspråket, oversettes til dette språket i stedet.",
-             "Text som redan är på målspråket översätts till det här språket i stället."),
+        ["Your language"] = ("Ditt språk", "Ditt språk"),
         ["Custom action"] = ("Egen handling", "Egen åtgärd"),
         ["Name in the menu"] = ("Navn i menyen", "Namn i menyn"),
         ["e.g. Shorten"] = ("f.eks. Forkort", "t.ex. Korta ner"),
@@ -60,8 +57,8 @@ public static class Strings
         ["Translate"] = ("Oversett", "Översätt"),
         ["Custom"] = ("Egen", "Egen"),
         ["Reset to Default"] = ("Tilbakestill", "Återställ"),
-        ["{0} and {1} are replaced with the target and second language."] =
-            ("{0} og {1} byttes ut med målspråket og andrespråket.", "{0} och {1} ersätts med målspråket och andraspråket."),
+        ["{0} becomes the language to translate to and {1} the other language."] =
+            ("{0} blir språket det oversettes til, og {1} det andre språket.", "{0} blir språket som det översätts till och {1} det andra språket."),
 
         // Windows only.
         ["Type a shortcut…"] = ("Trykk en hurtigtast…", "Tryck ett kortkommando…"),

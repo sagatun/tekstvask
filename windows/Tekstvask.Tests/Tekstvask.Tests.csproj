@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="../Tekstvask/Claude.cs;../Tekstvask/Prompts.cs;../Tekstvask/Shortcut.cs;../Tekstvask/Strings.cs" />
+    <Compile Include="../Tekstvask/Claude.cs;../Tekstvask/LanguageRecognizer.cs;../Tekstvask/Prompts.cs;../Tekstvask/Shortcut.cs;../Tekstvask/Strings.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -54,10 +54,14 @@ private struct GeneralSettings: View {
                         Text(action.title)
                     }
                 }
-                Picker(selection: $targetLanguage) { LanguageOptions() } label: {
-                    Text("Target language")
+                Picker("Translate to", selection: $targetLanguage) { LanguageOptions() }
+                Picker(selection: Binding(
+                    get: { Preferences.secondLanguage(stored: secondLanguage, target: targetLanguage) },
+                    set: { secondLanguage = $0 }
+                )) { LanguageOptions() } label: {
+                    Text("Your language")
                     let second = Preferences.secondLanguage(stored: secondLanguage, target: targetLanguage)
-                    Text("Text already in \(Preferences.languageName(targetLanguage)) is translated to \(Preferences.languageName(second)).")
+                    Text("Text in \(Preferences.languageName(targetLanguage)) is translated to \(Preferences.languageName(second)) instead.")
                 }
             }
             Section {
@@ -104,8 +108,6 @@ private struct GeneralSettings: View {
 
 private struct AdvancedSettings: View {
     @AppStorage(Preferences.modelKey) private var model: String?
-    @AppStorage(Preferences.targetLanguageKey) private var targetLanguage = Preferences.defaultTargetLanguage
-    @AppStorage(Preferences.secondLanguageKey) private var secondLanguage: String?
     @AppStorage(Preferences.customNameKey) private var customName = ""
     @State private var editing = TextAction.proofread
     @State private var prompt = TextAction.proofread.prompt
@@ -120,13 +122,6 @@ private struct AdvancedSettings: View {
                 } label: {
                     Text("Model")
                     Text("Haiku is the fastest and cheapest. Sonnet and Opus are slower and cost more, but follow demanding prompts better.")
-                }
-                Picker(selection: Binding(
-                    get: { Preferences.secondLanguage(stored: secondLanguage, target: targetLanguage) },
-                    set: { secondLanguage = $0 }
-                )) { LanguageOptions() } label: {
-                    Text("Second language")
-                    Text("Text that’s already in the target language is translated to this language instead.")
                 }
             }
             Section("Custom action") {
@@ -152,7 +147,7 @@ private struct AdvancedSettings: View {
                     Button("Reset to Default") { prompt = editing.defaultPrompt }
                         .disabled(prompt == editing.defaultPrompt)
                 } label: {
-                    Text("\(Prompts.targetPlaceholder) and \(Prompts.secondPlaceholder) are replaced with the target and second language.")
+                    Text("\(Prompts.targetPlaceholder) becomes the language to translate to and \(Prompts.secondPlaceholder) the other language.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

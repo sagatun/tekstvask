@@ -50,7 +50,7 @@ internal sealed class Tray : IDisposable
         foreach (var action in TextActionInfo.Available)
             Add(menu.Items, action.Title(), () => actions.StartFromMenu(action)).InputGestureText = Preferences.GetShortcut(action)?.ToString() ?? "";
 
-        var languages = new MenuItem { Header = Strings.T("Target language") };
+        var languages = new MenuItem { Header = Strings.T("Translate to") };
         foreach (string code in Strings.LanguageCodes)
         {
             string name = Strings.LanguageName(code);

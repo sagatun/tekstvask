@@ -14,7 +14,7 @@ struct MenuView: View {
         ForEach(TextAction.available, id: \.self) { action in
             Button(title(for: action)) { actions.start(action, after: .milliseconds(200)) }
         }
-        Picker("Target language", selection: $targetLanguage) { LanguageOptions() }
+        Picker("Translate to", selection: $targetLanguage) { LanguageOptions() }
         Divider()
         if let error = actions.lastError {
             Text(error)

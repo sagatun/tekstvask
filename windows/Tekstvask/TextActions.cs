@@ -30,8 +30,13 @@ internal static class TextActionInfo
         _ => Prompts.Custom,
     };
 
-    public static string SystemPrompt(this TextAction action) =>
-        Prompts.Filling(Preferences.GetPrompt(action), Preferences.TargetLanguage, Preferences.SecondLanguage);
+    /// <summary>Translate is two-way, so its languages depend on the text; the other prompts get the settings as they are.</summary>
+    public static string SystemPrompt(this TextAction action, string text)
+    {
+        var (target, second) = (Preferences.TargetLanguage, Preferences.SecondLanguage);
+        if (action == TextAction.Translate) (target, second) = Prompts.Languages(text, target, second);
+        return Prompts.Filling(Preferences.GetPrompt(action), target, second);
+    }
 }
 
 /// <summary>
@@ -96,7 +101,7 @@ internal sealed class TextActions
             var pill = WorkingPill.ShowNearCursor();
             try
             {
-                string reply = await Claude.Complete(apiKey, Preferences.Model, action.SystemPrompt(), original);
+                string reply = await Claude.Complete(apiKey, Preferences.Model, action.SystemPrompt(original), original);
                 pill.Close();
                 string result = Prompts.MatchingLineEndings(original, Prompts.RestoringOuterWhitespace(original, reply));
                 if (Win32.GetForegroundWindow() != window)

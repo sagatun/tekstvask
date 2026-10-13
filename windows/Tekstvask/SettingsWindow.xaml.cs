@@ -55,13 +55,15 @@ public partial class SettingsWindow : Window
         });
         LanguagePicker.ItemsSource = languages;
         LanguagePicker.SelectedValue = Preferences.TargetLanguage;
+        SecondLanguagePicker.ItemsSource = languages;
 
         foreach (var action in Enum.GetValues<TextAction>()) AddRow(action);
-        Shortcuts.RowDefinitions.Add(new RowDefinition());
-        Shortcuts.RowDefinitions.Add(new RowDefinition());
+        for (int i = 0; i < 3; i++) Shortcuts.RowDefinitions.Add(new RowDefinition());
         Grid.SetRow(LanguageLabel, rows.Count);
         Grid.SetRow(LanguagePicker, rows.Count);
-        Grid.SetRow(LanguageCaption, rows.Count + 1);
+        Grid.SetRow(SecondLanguageLabel, rows.Count + 1);
+        Grid.SetRow(SecondLanguagePicker, rows.Count + 1);
+        Grid.SetRow(LanguageCaption, rows.Count + 2);
 
         // Advanced
         ModelPicker.ItemsSource = new Dictionary<string, string>
@@ -71,9 +73,8 @@ public partial class SettingsWindow : Window
             ["claude-opus-5-5"] = "Claude Opus 5.5",
         };
         ModelPicker.SelectedValue = Preferences.Model;
-        SecondLanguagePicker.ItemsSource = languages;
         CustomName.Text = Preferences.CustomName;
-        PlaceholderCaption.Text = Strings.T("{0} and {1} are replaced with the target and second language.",
+        PlaceholderCaption.Text = Strings.T("{0} becomes the language to translate to and {1} the other language.",
             Prompts.TargetPlaceholder, Prompts.SecondPlaceholder);
         // Segmented like the macOS picker: radio buttons drawn as toggle buttons.
         var segment = TryFindResource(typeof(ToggleButton)) as Style;
@@ -132,7 +133,7 @@ public partial class SettingsWindow : Window
     private void RefreshLanguages()
     {
         SecondLanguagePicker.SelectedValue = Preferences.SecondLanguage;
-        LanguageCaption.Text = Strings.T("Text already in {0} is translated to {1}.",
+        LanguageCaption.Text = Strings.T("Text in {0} is translated to {1} instead.",
             Strings.LanguageName(Preferences.TargetLanguage), Strings.LanguageName(Preferences.SecondLanguage));
     }
 

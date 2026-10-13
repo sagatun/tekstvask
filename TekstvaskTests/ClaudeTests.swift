@@ -84,6 +84,15 @@ private func body(_ request: URLRequest) throws -> [String: Any] {
     #expect(!prompt.contains("{"))
 }
 
+@Test func textInTheTargetLanguageSwapsTheLanguages() {
+    let english = "This is a test to see if the language wash works."
+    #expect(Prompts.languages(for: english, target: "en", second: "nb") == ("nb", "en"))
+    #expect(Prompts.languages(for: "dettte er en ttest for å sse om spraakvash fungerer", target: "en", second: "nb") == ("en", "nb"))
+    #expect(Prompts.languages(for: english, target: "nb", second: "en") == ("nb", "en"))
+    // Too short to recognize: the prompt's own "if it is already in" clause decides.
+    #expect(Prompts.languages(for: "ok", target: "en", second: "nb") == ("en", "nb"))
+}
+
 @Test func secondLanguageIsNeverTheTarget() {
     #expect(Preferences.secondLanguage(stored: "de", target: "en", system: "nb") == "de")
     // Falls back to the system language, then to English, or Norwegian when the target is English.

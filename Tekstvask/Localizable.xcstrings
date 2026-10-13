@@ -2,18 +2,18 @@
   "sourceLanguage": "en",
   "version": "1.0",
   "strings": {
-    "%@ and %@ are replaced with the target and second language.": {
+    "%@ becomes the language to translate to and %@ the other language.": {
       "localizations": {
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ og %2$@ byttes ut med målspråket og andrespråket."
+            "value": "%1$@ blir språket det oversettes til, og %2$@ det andre språket."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ och %2$@ ersätts med målspråket och andraspråket."
+            "value": "%1$@ blir språket som det översätts till och %2$@ det andra språket."
           }
         }
       }
@@ -386,18 +386,18 @@
         }
       }
     },
-    "Second language": {
+    "Your language": {
       "localizations": {
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Andrespråk"
+            "value": "Ditt språk"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Andraspråk"
+            "value": "Ditt språk"
           }
         }
       }
@@ -434,18 +434,18 @@
         }
       }
     },
-    "Target language": {
+    "Translate to": {
       "localizations": {
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Målspråk"
+            "value": "Oversett til"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Målspråk"
+            "value": "Översätt till"
           }
         }
       }
@@ -482,34 +482,18 @@
         }
       }
     },
-    "Text already in %@ is translated to %@.": {
+    "Text in %@ is translated to %@ instead.": {
       "localizations": {
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tekst som allerede er på %1$@, oversettes til %2$@."
+            "value": "Tekst på %1$@ oversettes til %2$@ i stedet."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Text som redan är på %1$@ översätts till %2$@."
-          }
-        }
-      }
-    },
-    "Text that’s already in the target language is translated to this language instead.": {
-      "localizations": {
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tekst som allerede er på målspråket, oversettes til dette språket i stedet."
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Text som redan är på målspråket översätts till det här språket i stället."
+            "value": "Text på %1$@ översätts till %2$@ i stället."
           }
         }
       }

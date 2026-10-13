@@ -13,6 +13,19 @@ public class PromptsTests
         Assert.DoesNotContain("{", prompt);
     }
 
+    [WindowsFact]
+    public void TextInTheTargetLanguageSwapsTheLanguages()
+    {
+        const string english = "This is a test to see if the language wash works.";
+        Assert.Equal(("nb", "en"), Prompts.Languages(english, "en", "nb"));
+        Assert.Equal(("en", "nb"), Prompts.Languages("dettte er en ttest for å sse om spraakvash fungerer", "en", "nb"));
+        Assert.Equal(("nb", "en"), Prompts.Languages(english, "nb", "en"));
+    }
+
+    // Too short to recognize: the prompt's own "if it is already in" clause decides. On macOS there's no recognizer at all.
+    [Fact]
+    public void UnrecognizedTextKeepsTheLanguages() => Assert.Equal(("en", "nb"), Prompts.Languages("ok", "en", "nb"));
+
     [Fact]
     public void SecondLanguageIsNeverTheTarget()
     {
@@ -66,5 +79,14 @@ public class PromptsTests
         string indent = match.Groups[2].Value;
         var lines = match.Groups[1].Value.Split('\n').Select(line => line.StartsWith(indent) ? line[indent.Length..] : line);
         return string.Join("\n", lines).Replace("\\\n", "");
+    }
+}
+
+/// <summary>A test that needs Windows itself, such as its language recognizer. Skipped when the tests run on macOS.</summary>
+public sealed class WindowsFactAttribute : FactAttribute
+{
+    public WindowsFactAttribute()
+    {
+        if (!OperatingSystem.IsWindows()) Skip = "Needs Windows";
     }
 }

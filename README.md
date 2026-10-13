@@ -9,9 +9,9 @@ shortcut, using Claude. The selection is replaced in place; undo with ⌘Z or Ct
 | Translate | ⌃⌥⌘T | Ctrl+Alt+Shift+T |
 | Custom action | none; it appears once it has a name in Settings › Advanced | the same |
 
-Translate is two-way: text that's already in the target language is translated to the second language instead
-(by default the system language, so Norwegian ↔ English works without switching the target). The target language
-is chosen in the menu.
+Translate is two-way: text that's already in the language you translate to is translated to your own language instead
+(by default the system language, so Norwegian ↔ English works without switching). Both are set in Settings › General
+as **Translate to** and **Your language**; the language to translate to is also in the menu.
 
 The UI follows the system language: Norwegian Bokmål (and Nynorsk), Swedish, otherwise English.
 
@@ -64,10 +64,10 @@ To update, quit Tekstvask from its menu and replace `Tekstvask.exe` with the new
 
 ### Settings
 
-- **General:** API key, shortcuts, target language, open at login.
+- **General:** API key, shortcuts, Translate to and Your language, open at login.
 - **Advanced:** the model (Haiku 5.5 is the default and fastest; Sonnet 5.5 and Opus 5.5 are slower and cost more),
-  the second language, the custom action's name, and the three prompts. Each prompt can be edited and reset to its
-  default; `{target}` and `{second}` in a prompt become the language names. Only prompts that differ from the
+  the custom action's name, and the three prompts. Each prompt can be edited and reset to its default; in a prompt,
+  `{target}` becomes the language to translate to and `{second}` the other one. Only prompts that differ from the
   default are stored, so improved defaults in a new version reach everyone who hasn't edited theirs.
 
 ## Build from source
@@ -111,7 +111,9 @@ The links under [Download](#download) always point to the latest release, so the
 ## How it works
 
 The shortcut sends ⌘C to the frontmost app and reads the pasteboard. The text goes to the Messages API with a
-proofread or translate system prompt (`Tekstvask/Prompts.swift`). The reply is pasted with ⌘V, and the user's own
+proofread or translate system prompt (`Tekstvask/Prompts.swift`). For Translate, Apple's NaturalLanguage
+framework first recognizes the text's language: if it's clearly the language to translate to, the prompt is filled
+with the two languages swapped, so it asks for your own language first. The reply is pasted with ⌘V, and the user's own
 clipboard is restored afterwards. The clipboard is left alone if the user copied something new in the meantime.
 
 Shortcut conflicts: the recorder in Settings rejects shortcuts taken by macOS or by the app's menu
@@ -124,7 +126,8 @@ Alfred, …), so those clashes are not detected.
 Run before a release. Automated tests cover the API contract and text handling only.
 
 1. In Slack, TextEdit, a Safari text area, Notes and Mail: select text, press ⌃⌥⌘L. The text is replaced and ⌘Z restores it.
-2. Translate English text with English as the target: it becomes the second language. Norwegian text becomes English.
+2. With Translate to English and Your language Norwegian: an English sentence becomes Norwegian, a Norwegian one
+   English, and a single word like "ok" still translates.
 3. Advanced: each model proofreads without an error. Naming the custom action adds it to the menu and Settings, where it
    can get a shortcut; clearing the name removes both. An edited prompt takes effect at once; Reset to Default undoes it.
 4. The clipboard holds what it held before.
@@ -154,6 +157,11 @@ Choices made during implementation where the plan left room or turned out simple
   unless another action is given the same keys in the meantime.
 - **After a duplicate shortcut is removed, the action that keeps it registers it again.** KeyboardShortcuts registers
   keys, not actions, so clearing one action's shortcut also switched off another action with the same keys.
+- **Translate decides the two-way direction itself** (`Prompts.languages(for:)`): the platform's language recognizer
+  names the text's language, and text in the language to translate to gets the two languages swapped in the prompt.
+  Haiku without thinking often ignored the prompt's "if it is already in {target}" clause and returned English text
+  as English. The prompt text is unchanged, so both apps still send the same prompt; the clause covers text too short
+  to recognize, such as "ok".
 - **The Settings window has one fixed size for both tabs.** Letting the window follow each tab's height sent AppKit into
   a layout loop that crashed the app.
 
@@ -197,6 +205,7 @@ On Windows without make: `dotnet publish windows/Tekstvask -c Release -r win-x64
 | `URLSession` | the official `Anthropic` NuGet SDK |
 | `SMAppService` | the `HKCU\…\Run` registry value |
 | SwiftUI Settings form | WPF window with the Windows 11 (Fluent) theme, light/dark from the system |
+| NaturalLanguage (`NLLanguageRecognizer`), swapped from 60 % confidence | Extended Linguistic Services (`elscore.dll`), which gives no answer for very short text; it takes Danish for Norwegian Bokmål |
 
 A hotkey fires on key down, while the user still holds Ctrl+Alt+Shift. The app waits for the modifiers to be released
 before it sends Ctrl+C. The macOS app acts on key up for the same reason. It also sends a no-op key so that releasing

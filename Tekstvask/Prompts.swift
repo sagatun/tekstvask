@@ -1,9 +1,10 @@
 import Foundation
+import NaturalLanguage
 
 /// The default system prompts and text framing sent to Claude. The Windows app copies these strings verbatim
 /// (a test there compares them). Users can edit the prompts in Advanced settings.
 enum Prompts {
-    /// Written into any prompt, replaced with the English names of the target and second language.
+    /// Written into any prompt, replaced with the English names of the language to translate to and the other language.
     static let targetPlaceholder = "{target}", secondPlaceholder = "{second}"
 
     static let proofread = """
@@ -30,6 +31,19 @@ enum Prompts {
         (line breaks, lists, markdown, emoji, @mentions, links).
         Reply with only the rewritten text: no introduction, no explanation, no quotes, no <text> tags.
         """
+
+    /// The target and second language to fill in for `text`, swapped when the text is clearly in the target language.
+    /// Haiku tends to skip the translate prompt's "if it is already in {target}" clause and returns the text unchanged,
+    /// so we decide here; the clause only covers text too short or mixed to recognize, such as "ok".
+    // The Windows app does the same with Extended Linguistic Services (LanguageRecognizer.cs).
+    static func languages(for text: String, target: String, second: String) -> (target: String, second: String) {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(text)
+        guard let (language, probability) = recognizer.languageHypotheses(withMaximum: 1).first,
+              language.rawValue == target, probability >= 0.6
+        else { return (target, second) }
+        return (second, target)
+    }
 
     static func filling(_ prompt: String, target: String, second: String) -> String {
         prompt.replacingOccurrences(of: targetPlaceholder, with: englishName(target))

@@ -48,10 +48,13 @@
                                 <ColumnDefinition Width="180" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <!-- One row per action is added in code, then the target language and its caption. -->
-                            <TextBlock x:Name="LanguageLabel" Text="{local:Tr 'Target language'}" VerticalAlignment="Center" Margin="0,4,12,0" />
+                            <!-- One row per action is added in code, then the two languages and their caption. -->
+                            <TextBlock x:Name="LanguageLabel" Text="{local:Tr 'Translate to'}" VerticalAlignment="Center" Margin="0,4,12,0" />
                             <ComboBox x:Name="LanguagePicker" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,4,0,0"
                                       DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="LanguageChanged" />
+                            <TextBlock x:Name="SecondLanguageLabel" Text="{local:Tr 'Your language'}" VerticalAlignment="Center" Margin="0,8,12,0" />
+                            <ComboBox x:Name="SecondLanguagePicker" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,8,0,0"
+                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="SecondLanguageChanged" />
                             <TextBlock x:Name="LanguageCaption" Grid.ColumnSpan="3" Style="{StaticResource Caption}" Margin="0,8,0,0" />
                         </Grid>
                     </Border>
@@ -74,24 +77,13 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="200" />
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <StackPanel Margin="0,0,16,16">
+                            <StackPanel Margin="0,0,16,0">
                                 <TextBlock Text="{local:Tr 'Model'}" />
                                 <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
                                            Text="{local:Tr 'Haiku is the fastest and cheapest. Sonnet and Opus are slower and cost more, but follow demanding prompts better.'}" />
                             </StackPanel>
                             <ComboBox x:Name="ModelPicker" Grid.Column="1" VerticalAlignment="Top"
                                       DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="ModelChanged" />
-                            <StackPanel Grid.Row="1" Margin="0,0,16,0">
-                                <TextBlock Text="{local:Tr 'Second language'}" />
-                                <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0"
-                                           Text="{local:Tr 'Text that’s already in the target language is translated to this language instead.'}" />
-                            </StackPanel>
-                            <ComboBox x:Name="SecondLanguagePicker" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"
-                                      DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="SecondLanguageChanged" />
                         </Grid>
                     </Border>
 
